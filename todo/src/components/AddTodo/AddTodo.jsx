@@ -3,33 +3,32 @@ import useTodos from "../../hooks/useTodos";
 import "./AddTodo.scss";
 
 const AddTodo = () => {
-  const { state, dispatch } = useTodos();
-  const [inputText, setInputText] = useState("s");
-  //   console.log(state);
-  //   console.log(dispatch);
+  const { dispatch } = useTodos();
+  const [inputText, setInputText] = useState("");
+  const [taskId, setTaskId] = useState(0);
 
   const handleAdd = (event) => {
-    event.preventDefault();
-    // console.log(event);
     if (event.key === "Enter" && inputText !== "") {
-      dispatch({ type: "ADD", payload: inputText });
+      dispatch({
+        type: "ADD",
+        task: { id: taskId, text: inputText, isChecked: false },
+      });
+      setInputText("");
+      setTaskId(taskId + 1);
     }
   };
 
   return (
     <div className="add-todo">
-      <form>
-        <input
-          type="text"
-          value={inputText}
-          onChange={(e) => {
-            console.log(e);
-            setInputText(e.target.value);
-          }}
-          onKeyPress={(e) => handleAdd(e)}
-          placeholder="Create a new todo..."
-        />
-      </form>
+      <input
+        type="text"
+        value={inputText}
+        onChange={(e) => {
+          setInputText(e.target.value);
+        }}
+        onKeyUp={(e) => handleAdd(e)}
+        placeholder="Create a new todo..."
+      />
     </div>
   );
 };

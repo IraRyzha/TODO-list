@@ -1,9 +1,9 @@
 import "./App.scss";
 import mainBackground from "./images/bg-desktop-light.jpg";
 import iconMoon from "./images/icon-moon.svg";
+import { TodosProvider } from "./hoc/TodosProvider";
 import { AddTodo } from "./components/AddTodo";
 import { TodoList } from "./components/TodoList";
-import { TodosProvider } from "./hoc/TodosProvider";
 
 function App() {
   return (
