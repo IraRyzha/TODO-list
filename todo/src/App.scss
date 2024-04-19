@@ -1,0 +1,38 @@
+section.todo-list {
+  width: 100%;
+  height: 100vh;
+  background-color: #eaeaea;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  position: relative;
+  img.main-background {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+  }
+  div.container {
+    width: 43%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 35px;
+    height: auto;
+    margin-top: 55px;
+    z-index: 100;
+    div.logo {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h1 {
+        color: #ffffff;
+        font-size: 41px;
+        font-weight: 700;
+        letter-spacing: 12px;
+      }
+    }
+  }
+}
