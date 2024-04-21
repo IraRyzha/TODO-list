@@ -3,16 +3,13 @@ import useTodos from "../../hooks/useTodos";
 import "./AddTodo.scss";
 
 const AddTodo = () => {
-  const { dispatch } = useTodos();
+  const { addTask } = useTodos();
   const [inputText, setInputText] = useState("");
   const [taskId, setTaskId] = useState(0);
 
   const handleAdd = (event) => {
     if (event.key === "Enter" && inputText !== "") {
-      dispatch({
-        type: "ADD",
-        task: { id: taskId, text: inputText, isChecked: false },
-      });
+      addTask(taskId, inputText);
       setInputText("");
       setTaskId(taskId + 1);
     }

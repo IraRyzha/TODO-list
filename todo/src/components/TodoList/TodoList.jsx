@@ -1,17 +1,26 @@
 import "./TodoList.scss";
+import { useRef, createRef, useState, useEffect } from "react";
 import useTodos from "../../hooks/useTodos";
 import checkSvg from "../../images/icon-check.svg";
-import crossSvg from "../../images/icon-cross.svg";
+import renameSvg from "../../images/icon-rename.svg";
+import deleteSvg from "../../images/icon-delete.svg";
 
 const TodoList = () => {
-  const { state, dispatch } = useTodos();
+  const { state, checkTask, deleteTask, renameTask } = useTodos();
+  const [editedTaskId, setEditedTaskId] = useState();
 
-  const handleCheck = (checkedId) => {
-    dispatch({ type: "CHECK", checkedId });
-  };
+  // const taskInputRefs = useRef({});
+  // useEffect(() => {
+  //   taskInputRefs.current = state.todos.reduce((accumulator, task) => {
+  //     accumulator[task.id] = createRef();
+  //     return accumulator;
+  //   }, {});
+  // }, [state.todos]);
 
-  const handleDelete = (deletedId) => {
-    dispatch({ type: "DELETE", deletedId });
+  const handleRename = (taskId, newText) => {
+    if (newText?.length > 0) {
+      renameTask(taskId, newText);
+    }
   };
 
   return (
@@ -19,20 +28,40 @@ const TodoList = () => {
       {state.todos.length > 0 && (
         <ul>
           {state.todos.map((task) => {
+            const isEditing = task.id === editedTaskId;
             return (
               <li key={task.id} className={task.isChecked ? "checked" : ""}>
                 <button
                   className={task.isChecked ? "check-btn checked" : "check-btn"}
-                  onClick={() => handleCheck(task.id)}
+                  onClick={() => checkTask(task.id)}
                 >
                   {task.isChecked && <img src={checkSvg} />}
                 </button>
-                {task.text}
+                <input
+                  // ref={taskInputRefs.current[task.id]}
+                  value={task.text}
+                  onChange={(e) => {
+                    handleRename(task.id, e.target.value);
+                  }}
+                  disabled={!isEditing}
+                />
+                <button
+                  className="rename-btn"
+                  onClick={() => {
+                    setEditedTaskId(task.id);
+                    // const inputRef = taskInputRefs.current[task.id];
+                    // if (inputRef && inputRef.current) {
+                    //   inputRef.current.disabled = false;
+                    // }
+                  }}
+                >
+                  <img src={renameSvg} />
+                </button>
                 <button
                   className="delete-btn"
-                  onClick={() => handleDelete(task.id)}
+                  onClick={() => deleteTask(task.id)}
                 >
-                  <img src={crossSvg} />
+                  <img src={deleteSvg} />
                 </button>
               </li>
             );

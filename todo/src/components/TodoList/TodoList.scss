@@ -17,12 +17,17 @@ div.todo-list {
       display: flex;
       justify-content: start;
       align-items: center;
-      font-size: 18px;
-      font-weight: 500;
-      letter-spacing: 1px;
       padding: 35px;
       border-radius: 10px;
       position: relative;
+      input {
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        &:disabled {
+          color: #000000;
+        }
+      }
       .check-btn {
         width: 30px;
         height: 30px;
@@ -38,6 +43,9 @@ div.todo-list {
       &.checked {
         text-decoration: line-through;
         color: #a7a7a7;
+        input {
+          color: #a7a7a7;
+        }
       }
       &:after {
         content: "";
@@ -48,16 +56,23 @@ div.todo-list {
         bottom: 0;
         left: -35px;
       }
+      .rename-btn,
       .delete-btn {
         width: 30px;
         height: 30px;
         background-color: white;
         border: none;
         border-radius: 50%;
-        margin-left: auto;
+        img {
+          transform: scale(1.2);
+        }
         &:hover img {
           transform: scale(1.08);
         }
+      }
+      .rename-btn {
+        margin-left: auto;
+        margin-right: 10px;
       }
     }
   }
