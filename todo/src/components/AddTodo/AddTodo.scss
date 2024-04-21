@@ -1,0 +1,19 @@
+div.add-todo {
+  width: 100%;
+  height: 55px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 10px 10px 50px rgba($color: #0f0083, $alpha: 0.3);
+  input {
+    border-radius: 10px;
+    width: 100%;
+    height: 55px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 35px;
+    &::placeholder {
+      color: #a7a7a7;
+      letter-spacing: 1px;
+    }
+  }
+}

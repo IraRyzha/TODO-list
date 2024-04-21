@@ -1,0 +1,83 @@
+div.todo-list {
+  width: 100%;
+  height: auto;
+  max-height: 430px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 10px 10px 50px rgba($color: #0f0083, $alpha: 0.2);
+  ul {
+    width: 100%;
+    height: 100%;
+    max-height: 430px;
+    overflow: scroll;
+    padding-bottom: 5px;
+    li {
+      width: 100%;
+      height: 35px;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      padding: 35px;
+      border-radius: 10px;
+      position: relative;
+      input {
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        &:disabled {
+          color: #000000;
+        }
+      }
+      .check-btn {
+        width: 30px;
+        height: 30px;
+        background-color: white;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0px 0px 12px rgba($color: #000000, $alpha: 0.2);
+        margin-right: 20px;
+        &.checked {
+          background-color: #66bb6a;
+        }
+      }
+      &.checked {
+        text-decoration: line-through;
+        color: #a7a7a7;
+        input {
+          color: #a7a7a7;
+        }
+      }
+      &:after {
+        content: "";
+        width: calc(100% + 35px);
+        height: 1px;
+        background-color: #a7a7a7;
+        position: absolute;
+        bottom: 0;
+        left: -35px;
+      }
+      .rename-btn,
+      .delete-btn {
+        width: 30px;
+        height: 30px;
+        background-color: white;
+        border: none;
+        border-radius: 50%;
+        img {
+          transform: scale(1.2);
+        }
+        &:hover img {
+          transform: scale(1.08);
+        }
+      }
+      .rename-btn {
+        margin-left: auto;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
